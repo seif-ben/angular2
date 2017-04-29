@@ -1,12 +1,15 @@
 <div class="row">
   <div class="col-xs-12">
-    <a class="btn btn-success">New Recipe</a>
+    <a class="btn btn-success" routerLink="new">New Recipe</a>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group">
-      <rb-recipes-item *ngFor="let recipe of recipes" [recipe]="recipe" (click)="onSelected(recipe)"></rb-recipes-item>
+      <!--rb-recipes-item *ngFor="let recipe of recipes" [recipe]="recipe" 
+       [routerLink]=[recipe.name]></rb-recipes-item-->
+       <!--rb-recipes-item *ngFor="let recipe of recipes" [recipe]="recipe" (click)="onSelected(recipe)"></rb-recipes-item-->
+       <rb-recipes-item *ngFor="let recipe of recipes" [recipe]="recipe"></rb-recipes-item>
     </ul>
   </div>
 </div>
