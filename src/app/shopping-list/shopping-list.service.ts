@@ -13,7 +13,7 @@ export class ShoppingListService {
   }
 
   getIngredients(){
-    return this.items;
+    return this.items.slice();
   }
 
 }

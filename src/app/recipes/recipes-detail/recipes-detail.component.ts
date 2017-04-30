@@ -3,6 +3,7 @@ import { Recipe } from '../recipe';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
 import { ActivatedRoute, Params } from "@angular/router";
 import { RecipeService } from "app/recipes/recipe.service";
+import { Ingredient } from "app/shared/ingredient";
 
 @Component({
   selector: 'rb-recipes-detail',
@@ -12,6 +13,7 @@ export class RecipesDetailComponent implements OnInit {
 
   //@Input()
   selectedRecipe: Recipe;
+  ingredients: Ingredient[];
 
   constructor(private sls: ShoppingListService,
     private route: ActivatedRoute,
@@ -27,10 +29,13 @@ export class RecipesDetailComponent implements OnInit {
         this.selectedRecipe = this.recipeService.getRecipe(params['id']);
       }
     );
+
+    // Display ingredients
+    this.ingredients = this.selectedRecipe.ingrediants.slice();
   }
 
   addToShoppingList() {
-    this.sls.addIngredient(this.selectedRecipe !== undefined ? this.selectedRecipe.ingrediants : []);
+    this.sls.addIngredient(this.selectedRecipe !== undefined ? this.selectedRecipe.ingrediants.slice() : []);
   }
 
 }
