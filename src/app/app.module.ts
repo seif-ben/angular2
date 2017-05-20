@@ -11,10 +11,10 @@ import { RecipesListComponent } from './recipes/recipes-list/recipes-list.compon
 import { RecipesItemComponent } from './recipes/recipes-list/recipes-item.component';
 import { RecipesDetailComponent } from './recipes/recipes-detail/recipes-detail.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingListAddComponent } from './shopping-list/shopping-list-add.component';
 import { DropdownDirective } from './dropdown.directive';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipesEditComponent } from './recipes/recipes-edit/recipes-edit.component';
+import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +25,9 @@ import { RecipesEditComponent } from './recipes/recipes-edit/recipes-edit.compon
     RecipesItemComponent,
     RecipesDetailComponent,
     ShoppingListComponent,
-    ShoppingListAddComponent,
     DropdownDirective,
-    RecipesEditComponent
+    RecipesEditComponent,
+    ShoppingListEditComponent
   ],
   imports: [
     BrowserModule,
