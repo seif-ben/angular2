@@ -1,28 +1,33 @@
 <div class="row">
   <div class="col-xs-12">
-    <form id="shopping-list-add">
+    <form id="shopping-list-add" #shoppingListForm="ngForm" (ngSubmit)="onSubmit(shoppingListForm)">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="item-name">Name</label>
           <input
             type="text"
             id="item-name"
+            name="itemName"
             required
+            ngModel
             class="form-control">
         </div>
 
         <div class="col-sm-2 form-group">
           <label for="item-amount">Amount</label>
           <input
+            class="form-control"
             type="text"
             id="item-amount"
+            name="itemAmount"
             required
-            class="form-control">
+            pattern="^[0-9]*$"
+            ngModel>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="submit">Add</button>
+          <button class="btn btn-success" type="submit" [disabled]="shoppingListForm.invalid">Add</button>
           <button class="btn btn-danger" type="button">Delete Item</button>
           <button class="btn btn-primary" type="button">Clear</button>
         </div>

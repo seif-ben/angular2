@@ -35,7 +35,7 @@ export class RecipesDetailComponent implements OnInit {
   }
 
   addToShoppingList() {
-    this.sls.addIngredient(this.selectedRecipe !== undefined ? this.selectedRecipe.ingrediants.slice() : []);
+    this.sls.addIngredients(this.selectedRecipe !== undefined ? this.selectedRecipe.ingrediants.slice() : []);
   }
 
 }
