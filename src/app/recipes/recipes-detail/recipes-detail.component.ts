@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Recipe } from '../recipe';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { RecipeService } from "app/recipes/recipe.service";
 import { Ingredient } from "app/shared/ingredient";
 
@@ -17,6 +17,7 @@ export class RecipesDetailComponent implements OnInit {
 
   constructor(private sls: ShoppingListService,
     private route: ActivatedRoute,
+    private router: Router,
     private recipeService: RecipeService) { }
 
   ngOnInit() {
@@ -27,15 +28,22 @@ export class RecipesDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.selectedRecipe = this.recipeService.getRecipe(params['id']);
+
+        // Display ingredients
+        if (this.selectedRecipe.ingrediants !== undefined) {
+          this.ingredients = this.selectedRecipe.ingrediants.slice();
+        }
       }
     );
-
-    // Display ingredients
-    this.ingredients = this.selectedRecipe.ingrediants.slice();
   }
 
   addToShoppingList() {
     this.sls.addIngredients(this.selectedRecipe !== undefined ? this.selectedRecipe.ingrediants.slice() : []);
+  }
+
+  onDelete() {
+    this.recipeService.delete(this.selectedRecipe);
+    this.router.navigate(['/recipes']);
   }
 
 }

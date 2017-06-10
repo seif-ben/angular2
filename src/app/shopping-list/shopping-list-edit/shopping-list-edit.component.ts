@@ -30,7 +30,6 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
           itemAmount: selectedItem.quantity
         });
         this.selectedIngredient = selectedItem;
-        console.log('1 - ngChanges - shoppingListForm', this.shoppingListForm);
       }  
     });
   }

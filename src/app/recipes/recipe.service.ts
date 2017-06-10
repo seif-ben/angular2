@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from './recipe';
 import { Ingredient } from '../shared/ingredient';
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class RecipeService {
+
+  recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
       new Recipe('Fricassé', 'Fricassé tunsien', 'http://1.bp.blogspot.com/-dLFJRkHH2qQ/VIWtdAsqbRI/AAAAAAAABlY/FVTDACtXHs0/s1600/13.jpg', [
@@ -21,8 +24,22 @@ export class RecipeService {
 
   constructor() { }
 
+  save(recipe: Recipe) {
+    let itemIndex = -1;
+    this.recipes.forEach((item: Recipe, index) => {
+      if (item.name === recipe.name) {
+        this.recipes[index] = recipe;
+        itemIndex = index;
+      }
+    });
+    if (itemIndex === -1) {
+      this.recipes.push(recipe);
+    }
+    this.recipesChanged.next(this.recipes);
+  }
+
   getRecipes() {
-    return this.recipes;
+    return this.recipes.slice();
   };
 
   getRecipe(id: String): Recipe {
@@ -35,4 +52,17 @@ export class RecipeService {
     return result;
   }
 
+  delete(recipe: Recipe) {
+    let index = -1;
+    this.recipes.forEach((item: Recipe, i) => {
+      if (item.name === recipe.name) {
+        index = i;
+      }
+    });
+
+    if(index !== -1){
+      this.recipes.splice(index, 1);      
+      this.recipesChanged.next(this.recipes);
+    }
+  }
 }

@@ -10,7 +10,7 @@
   <div class="col-xs-12">
     <button class="btn btn-success" (click)="addToShoppingList()">To Shopping List</button>
     <button class="btn btn-primary" [routerLink]="['edit']">Edit</button>
-    <button class="btn btn-danger" [routerLink]="['delete']">Delete</button>
+    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
   </div>
 </div>
 <hr>
